@@ -86,7 +86,7 @@ export async function decode(latitude: number, longitude: number): Promise<Locat
     rawCleaningFiltered = tryParseJSON(rawCleaningFiltered);
     if (!rawCleaningFiltered) return null;
 
-    if (!rawCleaningFiltered[0] || rawCleaningFiltered[0][1] || !rawCleaningFiltered[0][1][0] || !!rawCleaningFiltered[0][1][0][14]) {
+    if (!rawCleaningFiltered[0] || !rawCleaningFiltered[0][1] || !rawCleaningFiltered[0][1][0] || !rawCleaningFiltered[0][1][0][14]) {
         return null;
     }
 
