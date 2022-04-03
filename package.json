@@ -1,0 +1,37 @@
+{
+  "name": "@aashari/nodejs-geocoding",
+  "version": "1.0.0",
+  "description": "NodeJS library that encode and decode geolocation which helps you convert latitude and longitude to formatted address, or formatted_address to latitude and longitude",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aashari/nodejs-geocoding.git"
+  },
+  "keywords": [
+    "geocoding",
+    "reverse-geocoding"
+  ],
+  "author": "aashari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aashari/nodejs-geocoding/issues"
+  },
+  "homepage": "https://github.com/aashari/nodejs-geocoding#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23"
+  }
+}
