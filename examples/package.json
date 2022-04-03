@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aashari/nodejs-geocoding": "^1.0.0"
+    "@aashari/nodejs-geocoding": "^1.1.0"
   }
 }
