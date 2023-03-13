@@ -1,10 +1,13 @@
 # @aashari/nodejs-geocoding
 
-NodeJS library that encode and decode geolocation which helps you convert latitude and longitude to formatted address, or formatted_address to latitude and longitude.
+A NodeJS library that can encode and decode geolocation information. This library allows you to convert latitude and longitude to formatted addresses or formatted addresses to latitude and longitude.
 
-> ⚠️⚠️⚠️ please do not use this library for commercial, use the official Google Maps API instead!
+> ⚠️⚠️⚠️ Please note that this library is not intended for commercial use. Please use the official Google Maps API instead.
 
 ### Installation
+To install @aashari/nodejs-geocoding, use one of the following commands:
+
+
 via yarn:
 
 ```
@@ -44,7 +47,7 @@ geocoding.decode(-6.170131, 106.8241607).then(result => {
 
 #### Encode Formatted Address
 
-##### Example Code
+##### Example Code (default language: en)
 ```javascript
 // importing the dependency
 const geocoding = require('@aashari/nodejs-geocoding');
@@ -67,6 +70,33 @@ geocoding.encode("jalan merdeka utara no.3 jakarta").then(result => {
         formatted_address: 'Jalan Medan Merdeka Utara, RT.3/RW.2, Gambir, Central Jakarta City, Jakarta',
         latitude: -6.1715111,
         longitude: 106.8269598
+    }
+]
+```
+
+##### Example Code (custom language: id)
+```javascript
+// importing the dependency
+const geocoding = require('@aashari/nodejs-geocoding');
+
+// encode formatted address to latitude and longitude
+geocoding.encode("jalan merdeka utara no.3 jakarta", "id").then(result => {
+    console.log(result);
+});
+```
+
+##### Expected Output
+```
+[
+    {
+        latitude: -6.175308299999999,
+        longitude: 106.8281502,
+        formatted_address: 'Jalan Medan Merdeka Utara No.3, RT.3/RW.2, Gambir, Kota Jakarta Pusat, Jakarta'
+    },
+    {
+        latitude: -6.1714815,
+        longitude: 106.8269598,
+        formatted_address: 'Jalan Medan Merdeka Utara, RT.3/RW.2, Gambir, Kota Jakarta Pusat, Jakarta'
     }
 ]
 ```
