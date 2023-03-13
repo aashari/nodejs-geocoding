@@ -1,12 +1,8 @@
 # @aashari/nodejs-geocoding
 
-[![NPM version](https://img.shields.io/npm/v/@aashari/nodejs-geocoding.svg)](https://www.npmjs.com/package/@aashari/nodejs-geocoding)
-[![npm module downloads](http://img.shields.io/npm/dt/@aashari/nodejs-geocoding.svg)](https://www.npmjs.org/package/@aashari/nodejs-geocoding)
-[![view on npm](http://img.shields.io/npm/l/@aashari/nodejs-geocoding.svg)](https://www.npmjs.org/package/@aashari/nodejs-geocoding)
-
 NodeJS library that encode and decode geolocation which helps you convert latitude and longitude to formatted address, or formatted_address to latitude and longitude.
 
-⚠️ please do not use this library for commercial, use the official Google Maps API instead! ⚠️
+> ⚠️⚠️⚠️ please do not use this library for commercial, use the official Google Maps API instead!
 
 ### Installation
 via yarn:
