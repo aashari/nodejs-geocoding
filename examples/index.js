@@ -25,3 +25,19 @@ geocoding.encode("jalan merdeka utara no.3 jakarta").then(result => {
         }
     ]*/
 });
+
+geocoding.encode("jalan merdeka utara no.3 jakarta", "id").then(result => {
+    console.log(result);
+    /*[
+        {
+            latitude: -6.175308299999999,
+            longitude: 106.8281502,
+            formatted_address: 'Jalan Medan Merdeka Utara No.3, RT.3/RW.2, Gambir, Kota Jakarta Pusat, Jakarta'
+        },
+        {
+            latitude: -6.1714815,
+            longitude: 106.8269598,
+            formatted_address: 'Jalan Medan Merdeka Utara, RT.3/RW.2, Gambir, Kota Jakarta Pusat, Jakarta'
+        }
+    ]*/
+});
