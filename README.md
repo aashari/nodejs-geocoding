@@ -1,11 +1,10 @@
 # @aashari/nodejs-geocoding
 
-[![npm version](https://img.shields.io/npm/v/@aashari/nodejs-geocoding.svg)](https://www.npmjs.com/package/@aashari/nodejs-geocoding)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/aashari/nodejs-geocoding)](https://github.com/aashari/nodejs-geocoding/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js->=18.0.0-green.svg)](https://nodejs.org/)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/aashari/nodejs-geocoding/publish.yml?label=build)](https://github.com/aashari/nodejs-geocoding/actions/workflows/publish.yml)
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/aashari/nodejs-geocoding)](https://github.com/aashari/nodejs-geocoding/releases)
 
 A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations. This library allows you to:
 
@@ -43,9 +42,9 @@ A lightweight TypeScript/Node.js library for geocoding and reverse geocoding ope
 
 ## Installation
 
-### From GitHub Packages (Recommended)
+### From GitHub Packages
 
-Create a `.npmrc` file in your project with:
+This package is distributed via GitHub Packages. To install it, create a `.npmrc` file in your project with:
 
 ```
 @aashari:registry=https://npm.pkg.github.com
@@ -60,15 +59,7 @@ Then install the package:
 npm install @aashari/nodejs-geocoding
 ```
 
-### From npm
-
-```bash
-# Using npm
-npm install @aashari/nodejs-geocoding
-
-# Using yarn
-yarn add @aashari/nodejs-geocoding
-```
+For more information on creating a Personal Access Token, see [GitHub's documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
 ## Usage
 
