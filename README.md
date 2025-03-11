@@ -3,7 +3,7 @@
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/aashari/nodejs-geocoding)](https://github.com/aashari/nodejs-geocoding/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js->=18.0.0-green.svg)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js->=22.0.0-green.svg)](https://nodejs.org/)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/aashari/nodejs-geocoding/publish.yml?label=build)](https://github.com/aashari/nodejs-geocoding/actions/workflows/publish.yml)
 
 A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations. This library allows you to:
@@ -13,22 +13,6 @@ A lightweight TypeScript/Node.js library for geocoding and reverse geocoding ope
 - **Language Support**: Get results in different languages (e.g., English, Indonesian, etc.)
 
 > ⚠️ **Disclaimer**: This library is not intended for commercial use. For production applications, please use the official [Google Maps API](https://developers.google.com/maps/documentation/geocoding/overview) instead.
-
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Reverse Geocoding (Decode)](#reverse-geocoding-decode)
-  - [Geocoding (Encode)](#geocoding-encode)
-  - [Language Support](#language-support)
-  - [TypeScript Usage](#typescript-usage)
-- [API Reference](#api-reference)
-- [Requirements](#requirements)
-- [How It Works](#how-it-works)
-- [Contributing](#contributing)
-- [License](#license)
-- [Changelog](#changelog)
 
 ## Features
 
@@ -211,7 +195,7 @@ interface Location {
 
 ## Requirements
 
-- **Node.js**: 18.x or higher
+- **Node.js**: 22.x or higher
 - **TypeScript**: 5.8 or higher (if using TypeScript)
 
 ## How It Works

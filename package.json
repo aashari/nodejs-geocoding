@@ -41,16 +41,16 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "directories": {
     "example": "examples"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.2.6",
     "typescript": "^5.8.2"
   }
 }
