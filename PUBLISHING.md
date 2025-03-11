@@ -2,7 +2,41 @@
 
 This guide explains how to publish this package to GitHub Packages.
 
-## Prerequisites
+## Method 1: Using GitHub CLI (Recommended)
+
+If you have the GitHub CLI installed, you can use it to authenticate and publish the package:
+
+1. Make sure you're logged in to GitHub CLI:
+```bash
+gh auth status
+```
+
+2. If not logged in, authenticate:
+```bash
+gh auth login
+```
+
+3. Create a temporary .npmrc file with your GitHub token:
+```bash
+echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
+echo "//npm.pkg.github.com/:_authToken=$(gh auth token)" >> .npmrc
+```
+
+4. Publish the package:
+```bash
+npm publish
+```
+
+5. After publishing, you can remove the token from your .npmrc file:
+```bash
+echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
+```
+
+## Method 2: Using Personal Access Token (PAT)
+
+If you don't have GitHub CLI, you can use a Personal Access Token:
+
+### Prerequisites
 
 1. You need a GitHub Personal Access Token (PAT) with the following scopes:
    - `read:packages`
@@ -10,7 +44,7 @@ This guide explains how to publish this package to GitHub Packages.
    - `delete:packages`
    - `repo`
 
-## Setup
+### Setup
 
 1. Create a `.npmrc` file in your home directory:
 
@@ -27,7 +61,7 @@ Replace `YOUR_GITHUB_PAT` with your GitHub Personal Access Token.
 echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
 ```
 
-## Publishing
+### Publishing
 
 Once you have set up authentication, you can publish the package:
 
