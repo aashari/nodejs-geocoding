@@ -1,85 +1,40 @@
 # Publishing to GitHub Packages
 
-This guide explains how to publish this package to GitHub Packages.
+This package is automatically published to GitHub Packages using GitHub Actions.
 
-## Method 1: Using GitHub CLI (Recommended)
+## Automatic Publishing with GitHub Actions
 
-If you have the GitHub CLI installed, you can use it to authenticate and publish the package:
+The package is automatically published to GitHub Packages whenever a new GitHub Release is created. The workflow is defined in `.github/workflows/publish.yml`.
 
-1. Make sure you're logged in to GitHub CLI:
-```bash
-gh auth status
-```
+### How to Publish a New Version
 
-2. If not logged in, authenticate:
-```bash
-gh auth login
-```
+1. Update the version in `package.json`
+2. Commit and push your changes
+3. Create a new tag:
+   ```bash
+   git tag -a vX.Y.Z -m "Version X.Y.Z"
+   git push origin vX.Y.Z
+   ```
+4. Create a new release on GitHub:
+   ```bash
+   gh release create vX.Y.Z --title "Version X.Y.Z" --notes "Release notes for version X.Y.Z"
+   ```
 
-3. Create a temporary .npmrc file with your GitHub token:
-```bash
-echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
-echo "//npm.pkg.github.com/:_authToken=$(gh auth token)" >> .npmrc
-```
-
-4. Publish the package:
-```bash
-npm publish
-```
-
-5. After publishing, you can remove the token from your .npmrc file:
-```bash
-echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
-```
-
-## Method 2: Using Personal Access Token (PAT)
-
-If you don't have GitHub CLI, you can use a Personal Access Token:
-
-### Prerequisites
-
-1. You need a GitHub Personal Access Token (PAT) with the following scopes:
-   - `read:packages`
-   - `write:packages`
-   - `delete:packages`
-   - `repo`
-
-### Setup
-
-1. Create a `.npmrc` file in your home directory:
-
-```bash
-echo "@aashari:registry=https://npm.pkg.github.com" > ~/.npmrc
-echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT" >> ~/.npmrc
-```
-
-Replace `YOUR_GITHUB_PAT` with your GitHub Personal Access Token.
-
-2. Create a `.npmrc` file in the project directory:
-
-```bash
-echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
-```
-
-### Publishing
-
-Once you have set up authentication, you can publish the package:
-
-```bash
-npm publish
-```
+The GitHub Actions workflow will automatically build, test, and publish the package to GitHub Packages.
 
 ## Consuming the Package
 
-To use this package in another project, add the following to your project's `.npmrc` file:
+To use this package in another project:
 
-```
-@aashari:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
-```
+1. Create a `.npmrc` file in your project with:
+   ```
+   @aashari:registry=https://npm.pkg.github.com
+   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+   ```
 
-Then install the package:
+2. Install the package:
+   ```bash
+   npm install @aashari/nodejs-geocoding
+   ```
 
-```bash
-npm install @aashari/nodejs-geocoding
-``` 
+Replace `YOUR_GITHUB_TOKEN` with a GitHub Personal Access Token that has the `read:packages` scope. 
