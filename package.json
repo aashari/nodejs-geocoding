@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/aashari/nodejs-geocoding#readme",
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "engines": {
