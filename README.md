@@ -1,65 +1,82 @@
 # @aashari/nodejs-geocoding
 
-A NodeJS library that can encode and decode geolocation information. This library allows you to convert latitude and longitude to formatted addresses or formatted addresses to latitude and longitude.
+[![npm version](https://img.shields.io/npm/v/@aashari/nodejs-geocoding.svg)](https://www.npmjs.com/package/@aashari/nodejs-geocoding)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-21.x-green.svg)](https://nodejs.org/)
 
-> ⚠️⚠️⚠️ Please note that this library is not intended for commercial use. Please use the official Google Maps API instead.
+A lightweight Node.js library for geocoding and reverse geocoding operations. This library allows you to:
 
-### Installation
-To install @aashari/nodejs-geocoding, use one of the following commands:
+- **Geocode**: Convert a formatted address to latitude and longitude coordinates
+- **Reverse Geocode**: Convert latitude and longitude coordinates to a formatted address
 
+> ⚠️ **Disclaimer**: This library is not intended for commercial use. For production applications, please use the official [Google Maps API](https://developers.google.com/maps/documentation/geocoding/overview) instead.
 
-via yarn:
+## Table of Contents
 
-```
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Reverse Geocoding (Decode)](#reverse-geocoding-decode)
+  - [Geocoding (Encode)](#geocoding-encode)
+  - [Language Support](#language-support)
+- [API Reference](#api-reference)
+- [Requirements](#requirements)
+- [License](#license)
+
+## Installation
+
+You can install the package using npm or yarn:
+
+```bash
+# Using npm
+npm install @aashari/nodejs-geocoding
+
+# Using yarn
 yarn add @aashari/nodejs-geocoding
 ```
 
-via npm:
+## Usage
 
-```
-npm i @aashari/nodejs-geocoding
-```
+### Reverse Geocoding (Decode)
 
-### Usage
+Convert latitude and longitude coordinates to a formatted address:
 
-#### Decode Latitude and Longitude
-
-##### Example Code
 ```javascript
-// importing the dependency
 const geocoding = require('@aashari/nodejs-geocoding');
 
-// decode latitude and longitude to formatted address
+// Decode latitude and longitude to formatted address
 geocoding.decode(-6.170131, 106.8241607).then(result => {
     console.log(result);
 });
 ```
 
-##### Expected Output
-```
+#### Example Output
+
+```javascript
 {
     latitude: -6.170131,
     longitude: 106.8241607,
-    formatted_address: 'Jl. Medan Merdeka Utara No.3, RT.2/RW.3, Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10110',
-    google_plus_code: 'RRHF+WMV Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta'
+    formatted_address: 'Gambir, Central Jakarta City, Jakarta',
+    google_plus_code: 'RRHF+WMV Gambir, Central Jakarta City, Jakarta'
 }
 ```
 
-#### Encode Formatted Address
+### Geocoding (Encode)
 
-##### Example Code (default language: en)
+Convert a formatted address to latitude and longitude coordinates:
+
 ```javascript
-// importing the dependency
 const geocoding = require('@aashari/nodejs-geocoding');
 
-// encode formatted address to latitude and longitude
+// Encode formatted address to latitude and longitude
 geocoding.encode("jalan merdeka utara no.3 jakarta").then(result => {
     console.log(result);
 });
 ```
 
-##### Expected Output
-```
+#### Example Output
+
+```javascript
 [
     {
         formatted_address: 'Jalan Medan Merdeka Utara No.3, RT.3/RW.2, Gambir, Central Jakarta City, Jakarta',
@@ -74,23 +91,26 @@ geocoding.encode("jalan merdeka utara no.3 jakarta").then(result => {
 ]
 ```
 
-##### Example Code (custom language: id)
+### Language Support
+
+You can specify the language for the geocoding results. The default language is English (`en`).
+
 ```javascript
-// importing the dependency
 const geocoding = require('@aashari/nodejs-geocoding');
 
-// encode formatted address to latitude and longitude
+// Encode with Indonesian language
 geocoding.encode("jalan merdeka utara no.3 jakarta", "id").then(result => {
     console.log(result);
 });
 ```
 
-##### Expected Output
-```
+#### Example Output with Indonesian Language
+
+```javascript
 [
     {
-        latitude: -6.175308299999999,
-        longitude: 106.8281502,
+        latitude: -6.1704643,
+        longitude: 106.82651399999999,
         formatted_address: 'Jalan Medan Merdeka Utara No.3, RT.3/RW.2, Gambir, Kota Jakarta Pusat, Jakarta'
     },
     {
@@ -100,3 +120,52 @@ geocoding.encode("jalan merdeka utara no.3 jakarta", "id").then(result => {
     }
 ]
 ```
+
+## API Reference
+
+### `decode(latitude, longitude, language?)`
+
+Converts latitude and longitude coordinates to a formatted address.
+
+- **Parameters**:
+  - `latitude` (number): The latitude coordinate
+  - `longitude` (number): The longitude coordinate
+  - `language` (string, optional): The language code (default: 'en')
+- **Returns**: Promise<Location | null>
+
+### `encode(formattedAddress, language?)`
+
+Converts a formatted address to latitude and longitude coordinates.
+
+- **Parameters**:
+  - `formattedAddress` (string): The address to geocode
+  - `language` (string, optional): The language code (default: 'en')
+- **Returns**: Promise<Location[]>
+
+### Location Interface
+
+```typescript
+interface Location {
+    latitude?: number;
+    longitude?: number;
+    google_plus_code?: string;
+    formatted_address?: string;
+}
+```
+
+## Requirements
+
+- Node.js 18.x or higher
+- TypeScript 4.9 or higher (if using TypeScript)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+Made with ❤️ by [aashari](https://github.com/aashari)

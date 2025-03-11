@@ -1,6 +1,6 @@
 {
   "name": "@aashari/nodejs-geocoding",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "NodeJS library that encode and decode geolocation which helps you convert latitude and longitude to formatted address, or formatted_address to latitude and longitude",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,10 @@
   "scripts": {
     "build": "jest && tsc",
     "prepare": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm test",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -18,25 +21,35 @@
   },
   "keywords": [
     "geocoding",
-    "reverse-geocoding"
+    "reverse-geocoding",
+    "geolocation",
+    "maps",
+    "address",
+    "coordinates",
+    "latitude",
+    "longitude",
+    "google-maps"
   ],
   "author": "aashari",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/aashari/nodejs-geocoding/issues"
   },
   "homepage": "https://github.com/aashari/nodejs-geocoding#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "directories": {
     "example": "examples"
   },
   "devDependencies": {
-    "@types/node": "^18.15.1",
-    "@types/jest": "^27.5.2",
-    "jest": "^27.5.1",
-    "ts-jest": "^27.1.5",
-    "typescript": "^4.9.5"
+    "@types/node": "^22.13.10",
+    "@types/jest": "^29.5.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.8.2"
   }
 }

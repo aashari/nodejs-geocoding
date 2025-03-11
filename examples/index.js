@@ -1,4 +1,4 @@
-const geocoding = require('@aashari/nodejs-geocoding');
+const geocoding = require('../dist/index');
 
 geocoding.decode(-6.170131, 106.8241607).then(result => {
     console.log(result);

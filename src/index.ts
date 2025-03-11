@@ -56,47 +56,36 @@ export async function decode(latitude: number, longitude: number, language: stri
 
     let googleResponse = await get(`https://www.google.com/maps/search/?api=1&hl=${language}&query=${location.latitude}%2C${location.longitude}`);
 
-    let finalFiltered: string[] = [];
-    let rawCleaningFiltered: [any] | any = [];
+    // Extract Google Plus Code and formatted address from the response
+    const plusCodePattern = new RegExp(`([A-Z0-9]{4}\\+[A-Z0-9]{2,3}\\s[^"<>]+)`);
+    const plusCodeMatch = googleResponse.match(plusCodePattern);
+    
+    if (plusCodeMatch && plusCodeMatch[1]) {
+        location.google_plus_code = plusCodeMatch[1].split('\\')[0]; // Remove any escape characters
+        
+        // Extract the location name from the Google Plus Code (e.g., "Gambir, Central Jakarta City, Jakarta")
+        const locationParts = location.google_plus_code.split(' ');
+        if (locationParts.length > 1) {
+            locationParts.shift(); // Remove the actual plus code
+            location.formatted_address = locationParts.join(' ');
+        }
+    }
+    
+    // If we couldn't extract the formatted address from the Google Plus Code,
+    // try to extract it from meta tags
+    if (!location.formatted_address) {
+        const metaTagPattern = /<meta[^>]*content=['"]([^'"]*\d+°\d+&#39;\d+\.\d+"[^'"]*)['"]/;
+        const metaTagMatch = googleResponse.match(metaTagPattern);
+        
+        if (metaTagMatch && metaTagMatch[1]) {
+            location.formatted_address = metaTagMatch[1].replace(/&#39;/g, "'");
+        }
+    }
 
-    finalFiltered = googleResponse.split("\n")
-        .filter((item: string) => item.includes(`${location.latitude},${location.longitude}`))
-        .filter((item: string) => item.includes("window.APP_OPTIONS="));
-
-    rawCleaningFiltered = finalFiltered[0]?.split("window.APP_OPTIONS=");
-    if (!rawCleaningFiltered[1]) return null;
-    rawCleaningFiltered = rawCleaningFiltered[1];
-
-    rawCleaningFiltered = rawCleaningFiltered.split("window.APP_INITIALIZATION_STATE=");
-    if (!rawCleaningFiltered[1]) return null;
-    rawCleaningFiltered = rawCleaningFiltered[1];
-
-    rawCleaningFiltered = rawCleaningFiltered.split(";window.APP_FLAGS=");
-    if (!rawCleaningFiltered[0]) return null;
-    rawCleaningFiltered = rawCleaningFiltered[0];
-
-    rawCleaningFiltered = tryParseJSON(rawCleaningFiltered);
-    if (!rawCleaningFiltered) return null;
-    if (!rawCleaningFiltered[3] || !rawCleaningFiltered[3][2]) return null;
-
-    rawCleaningFiltered = rawCleaningFiltered[3][2].split("\n");
-    if (!rawCleaningFiltered[1]) return null;
-    rawCleaningFiltered = rawCleaningFiltered[1];
-
-    rawCleaningFiltered = tryParseJSON(rawCleaningFiltered);
-    if (!rawCleaningFiltered) return null;
-
-    if (!rawCleaningFiltered[0] || !rawCleaningFiltered[0][1] || !rawCleaningFiltered[0][1][0] || !rawCleaningFiltered[0][1][0][14]) {
+    // If we still don't have a formatted address, return null
+    if (!location.formatted_address) {
         return null;
     }
 
-    location.formatted_address = rawCleaningFiltered[0][1][0][14][39];
-    if (!location.formatted_address) return null;
-
-    try {
-        location.google_plus_code = rawCleaningFiltered[0][1][0][14][183][2][2][0];
-    } catch { }
-
-    return location
-
+    return location;
 }
