@@ -226,37 +226,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
-### v2.2.1 (Latest)
-- Updated dependencies to their latest versions
-- Updated Node.js version requirement to 22.x
-- Changed license from ISC to MIT
-- Updated GitHub Actions workflow to use Node.js 22.x
-
-### v2.2.0
-- Updated all dependencies to their latest versions
-- Improved geocoding functionality to handle changes in Google Maps response structure
-- Updated target to ES2022 for better performance
-- Added MIT license file and updated license references
-- Configured for GitHub Packages deployment
-- Added GitHub Actions workflow for automated publishing
-
-### v2.1.0
-- Bumped devDependencies versions
-
-### v2.0.0
-- Upgraded NodeJS version to 18.15.0
-
-### v1.2.1
-- Updated version on package.json
-
-### v1.2.0
-- Enabled support for language customization
-
-### v1.1.0
-- Fixed decode failed validation
-
-### v1.0.0
-- Initial Release
+For a detailed changelog, please see the [CHANGELOG.md](CHANGELOG.md) file.
 
 ---
 
