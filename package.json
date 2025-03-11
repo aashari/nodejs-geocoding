@@ -1,7 +1,7 @@
 {
   "name": "@aashari/nodejs-geocoding",
   "version": "2.2.1",
-  "description": "NodeJS library that encode and decode geolocation which helps you convert latitude and longitude to formatted address, or formatted_address to latitude and longitude",
+  "description": "A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations with multilingual support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
