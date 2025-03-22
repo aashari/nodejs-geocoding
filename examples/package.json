@@ -1,0 +1,15 @@
+{
+	"name": "nodejs-geocoding-examples",
+	"version": "1.0.0",
+	"description": "Examples for nodejs-geocoding package",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@aashari/nodejs-geocoding": "latest"
+	}
+}
