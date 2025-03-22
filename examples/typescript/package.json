@@ -1,0 +1,20 @@
+{
+	"name": "nodejs-geocoding-typescript-examples",
+	"version": "1.0.0",
+	"description": "TypeScript examples for nodejs-geocoding package",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc",
+		"start": "npm run build && node dist/index.js",
+		"test:version": "npm run build && node dist/test-version.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@aashari/nodejs-geocoding": "^2.5.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.8.2",
+		"@types/node": "^22.13.10"
+	}
+}

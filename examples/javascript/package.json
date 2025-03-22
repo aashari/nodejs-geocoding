@@ -1,7 +1,7 @@
 {
-	"name": "nodejs-geocoding-examples",
+	"name": "nodejs-geocoding-javascript-examples",
 	"version": "1.0.0",
-	"description": "Examples for nodejs-geocoding package",
+	"description": "JavaScript examples for nodejs-geocoding package",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
