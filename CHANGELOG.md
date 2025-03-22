@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/aashari/nodejs-geocoding/compare/v2.7.0...v2.7.1) (2025-03-22)
+
+
+### Bug Fixes
+
+* update linting configuration to ignore examples directory and fix module loading ([f334d33](https://github.com/aashari/nodejs-geocoding/commit/f334d337eeb728aac958d1bfa7d0bd83c3343ba9))
+
 # [2.7.0](https://github.com/aashari/nodejs-geocoding/compare/v2.6.0...v2.7.0) (2025-03-22)
 
 

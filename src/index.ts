@@ -2,7 +2,7 @@ import { Location } from './location.interface';
 import { get } from './request.handler';
 
 // Package version - will be updated automatically by the release process
-export const VERSION = '2.7.0';
+export const VERSION = '2.7.1';
 
 // Define types for the JSON response
 type GoogleMapsJsonResponse = Record<string, unknown>;
