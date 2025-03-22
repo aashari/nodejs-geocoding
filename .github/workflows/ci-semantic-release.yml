@@ -15,7 +15,7 @@ jobs:
             contents: write # Needed to create releases and tags
             issues: write # Needed to comment on issues
             pull-requests: write # Needed to comment on pull requests
-            # packages permission removed as we're not using GitHub Packages
+            packages: write # Needed for GitHub Packages publishing
         steps:
             # Step 1: Check out the full Git history for proper versioning
             - name: Checkout
@@ -29,6 +29,7 @@ jobs:
               with:
                   node-version: 22 # Using Node.js 22
                   cache: 'npm' # Enable npm caching
+                  registry-url: 'https://registry.npmjs.org/' # npm registry
 
             # Step 3: Install dependencies with clean install
             - name: Install dependencies
@@ -49,7 +50,7 @@ jobs:
                   git config --global user.name "GitHub Actions"
 
             # Step 7: Run semantic-release to analyze commits and publish to npm
-            - name: Semantic Release
+            - name: Semantic Release for npm
               id: semantic
               env:
                   # Tokens needed for GitHub and npm authentication
@@ -59,4 +60,31 @@ jobs:
                   echo "Running semantic-release for version bump and npm publishing"
                   npx semantic-release
 
-                  # Note: GitHub Packages publishing has been removed
+            # Step 8: Setup Node.js for GitHub Packages
+            - name: Setup Node.js for GitHub Packages
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  registry-url: 'https://npm.pkg.github.com'
+                  scope: '@aashari'
+
+            # Step 9: Publish to GitHub Packages
+            - name: Publish to GitHub Packages
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  # Create temporary .npmrc for GitHub Packages
+                  echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
+                  echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+
+                  # Create a copy of package.json for GitHub Packages
+                  cp package.json package.json.npm
+
+                  # Update publishConfig for GitHub Packages
+                  jq '.publishConfig.registry = "https://npm.pkg.github.com"' package.json > temp.json && mv temp.json package.json
+
+                  # Publish to GitHub Packages
+                  npm publish
+
+                  # Restore original package.json
+                  mv package.json.npm package.json

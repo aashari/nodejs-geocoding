@@ -25,11 +25,28 @@ A lightweight TypeScript/Node.js library for geocoding and reverse geocoding ope
 
 ## Installation
 
-This package is distributed via npm. To install it, simply run:
+### From npm (Recommended)
 
 ```bash
 npm install @aashari/nodejs-geocoding
 ```
+
+### From GitHub Packages
+
+1. Create or update your `.npmrc` file:
+
+```
+@aashari:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+```
+
+2. Install the package:
+
+```bash
+npm install @aashari/nodejs-geocoding
+```
+
+Replace `YOUR_GITHUB_TOKEN` with a GitHub Personal Access Token that has the `read:packages` scope.
 
 ## Quick Start
 
