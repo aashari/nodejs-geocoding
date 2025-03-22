@@ -1,3 +1,16 @@
+# [2.4.0](https://github.com/aashari/nodejs-geocoding/compare/v2.3.0...v2.4.0) (2025-03-22)
+
+
+### Bug Fixes
+
+* prioritize GitHub Packages publishing and make npm publishing optional ([8bb26aa](https://github.com/aashari/nodejs-geocoding/commit/8bb26aa8fa4c7f441ea8a9352fc686f3a577b8a9))
+* update workflow configuration for GitHub Packages and npm publishing ([3326323](https://github.com/aashari/nodejs-geocoding/commit/33263231e714a328d5ca67f84935e8672bc7c2d1))
+
+
+### Features
+
+* add GitHub Packages publishing alongside npm ([c0f3698](https://github.com/aashari/nodejs-geocoding/commit/c0f36987ffc7255938a782781fa8fd7be179bc1e))
+
 # [2.3.0](https://github.com/aashari/nodejs-geocoding/compare/v2.2.2...v2.3.0) (2025-03-22)
 
 
