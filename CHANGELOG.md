@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/aashari/nodejs-geocoding/compare/v2.5.0...v2.6.0) (2025-03-22)
+
+
+### Features
+
+* enhance examples with version check and specific dependency version ([cbba43d](https://github.com/aashari/nodejs-geocoding/commit/cbba43d300f4e00fbe9c08c986832742bd5b8bdf))
+
 # [2.5.0](https://github.com/aashari/nodejs-geocoding/compare/v2.4.0...v2.5.0) (2025-03-22)
 
 
