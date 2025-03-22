@@ -1,56 +1,98 @@
 {
-  "name": "@aashari/nodejs-geocoding",
-  "version": "2.2.2",
-  "description": "A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations with multilingual support",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "jest && tsc",
-    "prepare": "npm run build",
-    "test": "jest",
-    "prepublishOnly": "npm test",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aashari/nodejs-geocoding.git"
-  },
-  "keywords": [
-    "geocoding",
-    "reverse-geocoding",
-    "geolocation",
-    "maps",
-    "address",
-    "coordinates",
-    "latitude",
-    "longitude",
-    "google-maps"
-  ],
-  "author": "aashari",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/aashari/nodejs-geocoding/issues"
-  },
-  "homepage": "https://github.com/aashari/nodejs-geocoding#readme",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=22.0.0"
-  },
-  "directories": {
-    "example": "examples"
-  },
-  "devDependencies": {
-    "@types/node": "^22.13.10",
-    "@types/jest": "^29.5.12",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.2.6",
-    "typescript": "^5.8.2"
-  }
+	"name": "@aashari/nodejs-geocoding",
+	"version": "2.2.2",
+	"description": "A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations with multilingual support",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc",
+		"test": "jest",
+		"test:coverage": "jest --coverage",
+		"lint": "eslint src --ext .ts",
+		"format": "prettier --write 'src/**/*.ts' 'scripts/**/*.js'",
+		"publish:npm": "npm publish",
+		"update:check": "npx npm-check-updates",
+		"update:deps": "npx npm-check-updates -u && npm install --legacy-peer-deps",
+		"update:version": "node scripts/update-version.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/aashari/nodejs-geocoding.git"
+	},
+	"keywords": [
+		"geocoding",
+		"reverse-geocoding",
+		"geolocation",
+		"maps",
+		"address",
+		"coordinates",
+		"latitude",
+		"longitude",
+		"google-maps"
+	],
+	"author": "aashari",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/aashari/nodejs-geocoding/issues"
+	},
+	"homepage": "https://github.com/aashari/nodejs-geocoding#readme",
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/",
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"directories": {
+		"example": "examples"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.22.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/exec": "^7.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^11.0.1",
+		"@semantic-release/npm": "^12.0.1",
+		"@types/jest": "^29.5.14",
+		"@types/node": "^22.13.10",
+		"@typescript-eslint/eslint-plugin": "^8.26.1",
+		"@typescript-eslint/parser": "^8.26.1",
+		"eslint": "^9.22.0",
+		"eslint-config-prettier": "^10.1.1",
+		"eslint-plugin-prettier": "^5.2.3",
+		"jest": "^29.7.0",
+		"nodemon": "^3.1.9",
+		"npm-check-updates": "^17.1.15",
+		"prettier": "^3.5.3",
+		"semantic-release": "^24.2.3",
+		"ts-jest": "^29.2.6",
+		"typescript": "^5.8.2",
+		"typescript-eslint": "^8.26.1"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node",
+		"testMatch": [
+			"**/src/**/*.test.ts"
+		],
+		"collectCoverageFrom": [
+			"src/**/*.ts",
+			"!src/**/*.test.ts",
+			"!src/**/*.spec.ts"
+		],
+		"coveragePathIgnorePatterns": [
+			"/node_modules/",
+			"/dist/",
+			"/coverage/"
+		],
+		"coverageReporters": [
+			"text",
+			"lcov",
+			"json-summary"
+		]
+	}
 }
