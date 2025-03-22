@@ -402,3 +402,4 @@ Recent updates:
 ---
 
 Made with ❤️ by [aashari](https://github.com/aashari)
+# Added NPM token for semantic-release
