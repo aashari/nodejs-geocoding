@@ -8,7 +8,7 @@
 
 ## Overview
 
-A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations with multilingual support. This library provides a simple, dependency-free solution for converting between addresses and geographic coordinates.
+A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations with multilingual support. This library provides a simple, dependency-free solution for converting between addresses and geographic coordinates. Available from both npm and GitHub Packages.
 
 > ⚠️ **Disclaimer**: This library is intended for non-commercial, low-volume applications. For production or commercial use, please use the official [Google Maps API](https://developers.google.com/maps/documentation/geocoding/overview).
 
