@@ -15,7 +15,7 @@ jobs:
             contents: write # Needed to create releases and tags
             issues: write # Needed to comment on issues
             pull-requests: write # Needed to comment on pull requests
-            packages: write # Needed for GitHub Packages publishing
+            # packages permission removed as we're not using GitHub Packages
         steps:
             # Step 1: Check out the full Git history for proper versioning
             - name: Checkout
@@ -23,14 +23,12 @@ jobs:
               with:
                   fetch-depth: 0 # Fetches all history for all branches and tags
 
-            # Step 2: Setup Node.js environment with GitHub registry
-            - name: Setup Node.js with GitHub registry
+            # Step 2: Setup Node.js environment
+            - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: 22 # Using Node.js 22
                   cache: 'npm' # Enable npm caching
-                  registry-url: 'https://npm.pkg.github.com' # GitHub Packages registry
-                  scope: '@aashari'
 
             # Step 3: Install dependencies with clean install
             - name: Install dependencies
@@ -50,47 +48,15 @@ jobs:
                   git config --global user.email "actions@github.com"
                   git config --global user.name "GitHub Actions"
 
-            # Step 7: Run semantic-release to analyze commits, version, and create GitHub release
+            # Step 7: Run semantic-release to analyze commits and publish to npm
             - name: Semantic Release
               id: semantic
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For GitHub operations
+                  # Tokens needed for GitHub and npm authentication
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For creating releases and commenting
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # For publishing to npm
               run: |
-                  echo "Running semantic-release for version bump and GitHub release"
+                  echo "Running semantic-release for version bump and npm publishing"
                   npx semantic-release
 
-            # Step 8: Temporarily modify package.json for GitHub Packages and publish
-            - name: Publish to GitHub Packages
-              if: steps.semantic.outcome == 'success'
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                  # Publish to GitHub Packages
-                  echo "Publishing to GitHub Packages"
-                  jq '.publishConfig.registry = "https://npm.pkg.github.com"' package.json > temp.json && mv temp.json package.json
-                  npm publish
-
-                  # Restore original package.json for npm publishing
-                  git checkout -- package.json
-
-                  echo "Successfully published to GitHub Packages"
-
-            # Step 9: Setup Node.js for npm registry (optional)
-            - name: Setup Node.js for npm registry
-              if: steps.semantic.outcome == 'success' && env.NPM_TOKEN != ''
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 22
-                  registry-url: 'https://registry.npmjs.org/'
-                  scope: '@aashari'
-              env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-            # Step 10: Publish to npm (optional)
-            - name: Publish to npm
-              if: steps.semantic.outcome == 'success' && env.NPM_TOKEN != ''
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-              run: |
-                  echo "Publishing to npm registry (optional)"
-                  npm publish || echo "npm publishing failed, but GitHub Packages succeeded"
+                  # Note: GitHub Packages publishing has been removed
