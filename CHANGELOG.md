@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/aashari/nodejs-geocoding/compare/v2.6.0...v2.7.0) (2025-03-22)
+
+
+### Features
+
+* add TypeScript examples and reorganize examples by language ([d1af0f6](https://github.com/aashari/nodejs-geocoding/commit/d1af0f6257a5e78a4dbc2b66dbc51ade875f742b))
+
 # [2.6.0](https://github.com/aashari/nodejs-geocoding/compare/v2.5.0...v2.6.0) (2025-03-22)
 
 
