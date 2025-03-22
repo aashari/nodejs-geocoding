@@ -16,6 +16,16 @@ To run these examples:
     npm start
     ```
 
+## Version Check
+
+To verify that you're using the latest version of the package:
+
+```bash
+npm run test:version
+```
+
+This will show the installed package version and run a simple test to confirm functionality.
+
 ## Examples Included
 
 1. **Basic Geocoding** - Converting an address to coordinates

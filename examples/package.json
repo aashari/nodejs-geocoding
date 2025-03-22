@@ -5,11 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node index.js"
+		"start": "node index.js",
+		"test:version": "node test-version.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@aashari/nodejs-geocoding": "latest"
+		"@aashari/nodejs-geocoding": "^2.5.0"
 	}
 }
