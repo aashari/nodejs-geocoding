@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/aashari/nodejs-geocoding/compare/v2.7.1...v2.7.2) (2025-03-22)
+
+
+### Bug Fixes
+
+* update release workflow to ensure correct versioning in compiled files ([46deeca](https://github.com/aashari/nodejs-geocoding/commit/46deeca60d8658a6e43a5e067fb56ddcbf8dd3de))
+
 ## [2.7.1](https://github.com/aashari/nodejs-geocoding/compare/v2.7.0...v2.7.1) (2025-03-22)
 
 
