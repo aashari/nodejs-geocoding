@@ -9,7 +9,7 @@
 		"build": "tsc",
 		"test": "jest",
 		"test:coverage": "jest --coverage",
-		"lint": "eslint src --ext .ts",
+		"lint": "eslint src --ext .ts --config eslint.config.mjs",
 		"format": "prettier --write 'src/**/*.ts' 'scripts/**/*.js'",
 		"publish:npm": "npm publish",
 		"update:check": "npx npm-check-updates",
