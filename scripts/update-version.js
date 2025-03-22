@@ -40,7 +40,14 @@ const log = (message, verbose = false) => {
 const versionFiles = [
 	{
 		path: path.join(rootDir, 'src', 'index.ts'),
-		pattern: /const VERSION = ['"]([^'"]*)['"]/,
+		pattern: /export const VERSION = ['"]([^'"]*)['"]/,
+		replacement: (match, currentVersion) =>
+			match.replace(currentVersion, newVersion),
+	},
+	// Also update the compiled JavaScript file if it exists
+	{
+		path: path.join(rootDir, 'dist', 'index.js'),
+		pattern: /exports\.VERSION = ['"]([^'"]*)['"]/,
 		replacement: (match, currentVersion) =>
 			match.replace(currentVersion, newVersion),
 	},
