@@ -23,13 +23,14 @@ jobs:
               with:
                   fetch-depth: 0 # Fetches all history for all branches and tags
 
-            # Step 2: Setup Node.js environment
-            - name: Setup Node.js
+            # Step 2: Setup Node.js environment with GitHub registry
+            - name: Setup Node.js with GitHub registry
               uses: actions/setup-node@v4
               with:
                   node-version: 22 # Using Node.js 22
                   cache: 'npm' # Enable npm caching
-                  registry-url: 'https://registry.npmjs.org/' # npm registry
+                  registry-url: 'https://npm.pkg.github.com' # GitHub Packages registry
+                  scope: '@aashari'
 
             # Step 3: Install dependencies with clean install
             - name: Install dependencies
@@ -49,42 +50,47 @@ jobs:
                   git config --global user.email "actions@github.com"
                   git config --global user.name "GitHub Actions"
 
-            # Step 7: Run semantic-release to analyze commits and publish to npm
-            - name: Semantic Release for npm
+            # Step 7: Run semantic-release to analyze commits, version, and create GitHub release
+            - name: Semantic Release
               id: semantic
               env:
-                  # Tokens needed for GitHub and npm authentication
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For creating releases and commenting
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # For publishing to npm
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For GitHub operations
               run: |
-                  echo "Running semantic-release for version bump and npm publishing"
+                  echo "Running semantic-release for version bump and GitHub release"
                   npx semantic-release
 
-            # Step 8: Setup Node.js for GitHub Packages
-            - name: Setup Node.js for GitHub Packages
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 22
-                  registry-url: 'https://npm.pkg.github.com'
-                  scope: '@aashari'
-
-            # Step 9: Publish to GitHub Packages
+            # Step 8: Temporarily modify package.json for GitHub Packages and publish
             - name: Publish to GitHub Packages
+              if: steps.semantic.outcome == 'success'
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  # Create temporary .npmrc for GitHub Packages
-                  echo "@aashari:registry=https://npm.pkg.github.com" > .npmrc
-                  echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-
-                  # Create a copy of package.json for GitHub Packages
-                  cp package.json package.json.npm
-
-                  # Update publishConfig for GitHub Packages
-                  jq '.publishConfig.registry = "https://npm.pkg.github.com"' package.json > temp.json && mv temp.json package.json
-
                   # Publish to GitHub Packages
+                  echo "Publishing to GitHub Packages"
+                  jq '.publishConfig.registry = "https://npm.pkg.github.com"' package.json > temp.json && mv temp.json package.json
                   npm publish
 
-                  # Restore original package.json
-                  mv package.json.npm package.json
+                  # Restore original package.json for npm publishing
+                  git checkout -- package.json
+
+                  echo "Successfully published to GitHub Packages"
+
+            # Step 9: Setup Node.js for npm registry (optional)
+            - name: Setup Node.js for npm registry
+              if: steps.semantic.outcome == 'success' && env.NPM_TOKEN != ''
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  registry-url: 'https://registry.npmjs.org/'
+                  scope: '@aashari'
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            # Step 10: Publish to npm (optional)
+            - name: Publish to npm
+              if: steps.semantic.outcome == 'success' && env.NPM_TOKEN != ''
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: |
+                  echo "Publishing to npm registry (optional)"
+                  npm publish || echo "npm publishing failed, but GitHub Packages succeeded"
