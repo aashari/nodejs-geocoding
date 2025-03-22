@@ -14,14 +14,13 @@ jest.config.js
 .github/
 .git/
 .gitignore
-.eslintrc.json
-eslint.config.js
+.eslintrc
+.eslintrc.js
 .eslintignore
 .prettierrc
+.prettierrc.js
 tsconfig.json
 *.tsbuildinfo
-.releaserc.json
-scripts/
 
 # Editor directories
 .idea/

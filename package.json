@@ -4,10 +4,7 @@
 	"description": "A lightweight TypeScript/Node.js library for geocoding and reverse geocoding operations with multilingual support",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
-	"type": "module",
-	"files": [
-		"dist"
-	],
+	"type": "commonjs",
 	"scripts": {
 		"build": "tsc",
 		"test": "jest",
@@ -35,7 +32,7 @@
 		"google-maps"
 	],
 	"author": "aashari",
-	"license": "MIT",
+	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/aashari/nodejs-geocoding/issues"
 	},
@@ -43,9 +40,6 @@
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/",
 		"access": "public"
-	},
-	"engines": {
-		"node": ">=22.0.0"
 	},
 	"directories": {
 		"example": "examples"

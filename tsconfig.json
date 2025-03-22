@@ -1,25 +1,19 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "declaration": true,
-    "strictNullChecks": true,
-    "target": "es2022",
-    "outDir": "dist",
+    /* Language and Environment */
+    "target": "ES2015",
+    /* Modules */
     "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
+    /* Emit */
+    "declaration": true,
+    "outDir": "./dist",
+    /* Interop Constraints */
     "esModuleInterop": true,
-    "lib": [
-      "es2022",
-      "dom"
-    ],
-    "rootDir": "src"
+    "forceConsistentCasingInFileNames": true,
+    /* Type Checking */
+    "strict": true,
+    /* Completeness */
+    "skipLibCheck": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*"]
 }
