@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/aashari/nodejs-geocoding/compare/v2.4.0...v2.5.0) (2025-03-22)
+
+
+### Features
+
+* add new examples directory with sample code ([9cb9d13](https://github.com/aashari/nodejs-geocoding/commit/9cb9d13cea7fe44bc05ff62c59d856eb93e25e40))
+
 # [2.4.0](https://github.com/aashari/nodejs-geocoding/compare/v2.3.0...v2.4.0) (2025-03-22)
 
 
